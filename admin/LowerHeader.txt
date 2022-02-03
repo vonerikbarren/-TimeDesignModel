@@ -1,0 +1,20 @@
+Next Steps:
+-> Group Objects together
+-> upload a svg img
+-> animate groups for rotating  circularly and squarly  (if that makes any sense.)
+-> Think about other reality shapes alsoo.
+
+
+ΔH_01 = {
+ Goal: User Mode, and Demonstration Mode
+
+ Demonstration Mode = {
+   WhenUserPressesPlay = () => {
+     Realities will show from inner most to outer most.
+
+     PresentationProgram = () => {
+       // delayedTimer = camera location periodically throughout the song.
+     }
+   }
+ }
+}

@@ -15,6 +15,12 @@
 			<div class="pressStart">Press Start</div>
 		</div>
 
+		<div class="virtualkeyboard-container-L0">
+
+		</div>
+
+<script src="./THREE_Scene.js"></script>
+
 		<script type="module">
 
 			import * as THREE from './libraries/modules/three.module.js';
@@ -29,7 +35,19 @@
 			let container, stats;
 			let camera, scene, renderer;
 			let controls, water, sun, mesh, ΔΦ, ΔΩ;
-			let Φ;
+			let Φ, meshA1;
+
+			const particlesGeometryA = new THREE.BufferGeometry()
+
+
+			const textureLoader = new THREE.TextureLoader();
+			// const testImg01 = textureLoader.load('./assets/img/Purple_Tech01.jpeg')
+			const testImg01 = textureLoader.load('./assets/img/Glitter_Pixels.jpeg')
+
+			const testImg02 = textureLoader.load('./assets/img/01_Purple_Galaxy.jpeg')
+			
+
+		
 
 			init();
 			animate();
@@ -45,6 +63,7 @@
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				container.appendChild( renderer.domElement );
+				
 
 				//
 
@@ -60,7 +79,7 @@
 
 				// Water
 
-				const waterGeometry = new THREE.PlaneGeometry( 10000, 10000 );
+				const waterGeometry = new THREE.PlaneGeometry( 50000, 50000 );
 
 				water = new Water(
 					waterGeometry,
@@ -87,7 +106,7 @@
 				// Skybox
 
 				const sky = new Sky();
-				sky.scale.setScalar( 10000 );
+				sky.scale.setScalar( 50000 );
 				scene.add( sky );
 
 				const skyUniforms = sky.material.uniforms;
@@ -137,6 +156,7 @@
 				scene.add ( ΔΦ );
 
 				const ΔΦ01_0Α2 = new THREE.ConeGeometry(30, 30, 3);
+				const ΔΦ01_1Α2 = new THREE.MeshStandardMaterial({side: THREE.DoubleSide});
 				ΔΩ = new THREE.Mesh(ΔΦ01_0Α2, material);
 				ΔΩ.position.x = 0
 				ΔΩ.position.y = 40
@@ -144,11 +164,45 @@
 				scene.add ( ΔΩ );
 
 				const ΔΦ02_Α1 = new THREE.IcosahedronGeometry(7, 2);
-				Φ = new THREE.Mesh(ΔΦ02_Α1, material);
+				Φ = new THREE.Mesh(ΔΦ02_Α1, ΔΦ01_1Α2);
+				Φ.position.y = 57.423
 				scene.add ( Φ )
 
+				const geometry2 = new THREE.SphereGeometry(3000, 32, 32)
+				const material2 = new THREE.MeshBasicMaterial({ map: testImg02, side: THREE.DoubleSide });
+				meshA1 = new THREE.Mesh(geometry2, material2)
+				material2.transparent = false;
+				material2.alphaMap = testImg02
+				material2.wireframe = false;
+				scene.add(meshA1)
 
 
+				const geometry4 = new THREE.BoxGeometry(500, 500, 500, 32, 32, 32)
+				const material4 = new THREE.MeshBasicMaterial({ map: testImg01, side: THREE.DoubleSide });
+				const mesh3 = new THREE.Mesh(geometry4, material4)
+				material4.transparent = false;
+				material4.alphaMap = testImg01
+				material4.wireframe = false;
+				scene.add(mesh3)
+
+				// const ambientLight = new THREE.AmbientLight(0xffffff, 0.3)
+				// scene.add(ambientLight)
+
+				const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3)
+				scene.add(directionalLight)
+
+				directionalLight.position.x = 255
+				directionalLight.shadow.mapSize.width = 1024
+				directionalLight.shadow.mapSize.height = 1024
+				directionalLight.shadow.camera.near = 1
+				directionalLight.shadow.camera.far = 6
+				directionalLight.shadow.camera.top = 2
+				directionalLight.shadow.camera.right = 2
+				directionalLight.shadow.camera.bottom = - 2
+				directionalLight.shadow.camera.left = - 2
+
+				directionalLight.position.set(2, 2, - 1)
+				scene.add(directionalLight)
 
 				// var geometry2 = new THREE.BoxGeometry( 100, 100, 20 );
 				// geometry2.applyMatrix( new THREE.Matrix4().makeRotationZ( Math.PI / 4 ) );
@@ -160,13 +214,14 @@
 				//
 
 				controls = new OrbitControls( camera, renderer.domElement );
-				controls.maxPolarAngle = Math.PI * 0.495;
-				controls.target.set( 0, 10, 0 );
-				controls.minDistance = 40.0;
-				controls.maxDistance = 200.0;
+				// controls.maxPolarAngle = Math.PI * 0.495;
+				// controls.target.set( 0, 55, 0 );
+				// controls.minDistance = 40.0;
+				// controls.maxDistance = 200.0;
 				controls.update();
 
 				//
+				camera.lookAt(0, 55, 0 )
 
 				stats = new Stats();
 				container.appendChild( stats.dom );
@@ -227,6 +282,8 @@
 			function render() {
 
 				const time = performance.now() * 0.001;
+
+			
 				
 				mesh.position.z = Math.PI / 3 ;
 				mesh.rotation.z = Math.PI / 4 ;
@@ -247,8 +304,10 @@
 
 				// camera.rotation.x = time * 0.1;
 
-				ΔΦ.rotation.y = time * 1;
-				ΔΩ.rotation.y = time * 1;
+				ΔΦ.rotation.y = time * 15;
+				ΔΩ.rotation.y = time * 15;
+				// meshA1.rotation.y = time * 15;
+				meshA1.rotation.x = time * 15
 
 
 				water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
