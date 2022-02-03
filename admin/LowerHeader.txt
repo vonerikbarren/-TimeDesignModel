@@ -9,6 +9,17 @@ Next Steps:
  Goal: User Mode, and Demonstration Mode
 
  Demonstration Mode = {
+   Assets: {
+     Free: {},
+     ForPurchase: {
+       SpiralOfTimeImage01: {
+         Link: "https://www.bigstockphoto.com/image-266945176/stock-photo-the-composition-of-the-space-of-time%2C-the-flight-in-space-in-a-spiral-of-roman-clocks-3d-illustratio",
+
+         Note: ["Budget the image prior to making purchase"],
+       }
+     },
+   }
+
    WhenUserPressesPlay = () => {
      Realities will show from inner most to outer most.
 
