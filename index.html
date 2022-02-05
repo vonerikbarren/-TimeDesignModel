@@ -35,7 +35,7 @@
 			let container, stats;
 			let camera, scene, renderer;
 			let controls, water, sun, mesh, ΔΦ, ΔΩ;
-			let Φ, MeshHDC_01, meshA1, goldenGearTest;
+			let Φ, MeshHDC_01, meshA1, goldenGearTest, goldenGearTest2 ;
 
 			const particlesGeometryA = new THREE.BufferGeometry()
 
@@ -46,7 +46,7 @@
 
 			const testImg02 = textureLoader.load('./assets/img/01_Purple_Galaxy.jpeg')
 
-			const clockPNG = textureLoader.load('./assets/img/clocks/Clock02_NoHands01.png')
+			const clockPNG = textureLoader.load('./assets/img/clocks/Clock03_A1.png')
 
 			const gear01_png = textureLoader.load('./assets/img/gears/GoldenGear01_A1.png')
 			
@@ -172,7 +172,7 @@
 				Φ.position.y = 57.423
 				scene.add ( Φ )
 
-				const geometry2 = new THREE.SphereGeometry(3000, 32, 32)
+				const geometry2 = new THREE.SphereGeometry(5000, 32, 32)
 				const material2 = new THREE.MeshBasicMaterial({ map: testImg02, side: THREE.DoubleSide });
 				meshA1 = new THREE.Mesh(geometry2, material2)
 				material2.transparent = false;
@@ -184,12 +184,13 @@
 				const geometry4 = new THREE.BoxGeometry(500, 500, 500, 32, 32, 32)
 				const material4 = new THREE.MeshBasicMaterial({ map: testImg01, side: THREE.DoubleSide });
 				const mesh3 = new THREE.Mesh(geometry4, material4)
-				material4.transparent = false;
+				material4.transparent = true;
 				material4.alphaMap = testImg01
 				material4.wireframe = false;
+				mesh3.position.set(0, 2000, 0)
 				scene.add(mesh3)
 
-				const geometry04_HyperDataCardTest = new THREE.PlaneGeometry(300, 300);
+				const geometry04_HyperDataCardTest = new THREE.PlaneGeometry(400, 400);
 				const mat_clock = new THREE.MeshBasicMaterial(
     			{
         		map: clockPNG,
@@ -216,8 +217,23 @@
     	 	mat_goldengear01
 				);
 				mat_goldengear01.transparent = true;
-				goldenGearTest.position.set(0, 55, 0);
+				goldenGearTest.position.set(0, 55, -1);
 				scene.add(goldenGearTest);
+
+				const geometry05_NeonCircle = new THREE.PlaneGeometry(500, 500);
+				const mat_Neon01 = new THREE.MeshBasicMaterial(
+    			{
+        		map: gear01_png,
+        		side: THREE.DoubleSide
+    			}
+				);
+				goldenGearTest2 = new THREE.Mesh(
+    		geometry05_NeonCircle,
+    	 	mat_Neon01,
+				);
+				mat_goldengear01.transparent = true;
+				goldenGearTest2.position.set(0, 55, -2);
+				scene.add(goldenGearTest2);
 
 				// const ambientLight = new THREE.AmbientLight(0xffffff, 0.3)
 				// scene.add(ambientLight)
@@ -347,6 +363,7 @@
 				meshA1.rotation.x = time * 15
 				MeshHDC_01.rotation.z = time * -0.5;
 				goldenGearTest.rotation.z = time * 0.5;
+				goldenGearTest2.rotation.z = time * 0.5;
 
 				water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
 
