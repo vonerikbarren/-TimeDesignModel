@@ -36,19 +36,26 @@
 			let camera, scene, renderer;
 			let controls, water, sun, mesh, ΔΦ, ΔΩ;
 			let Φ, MeshHDC_01, meshA1, goldenGearTest, goldenGearTest2 ;
+			let neoncircle;
 
 			const particlesGeometryA = new THREE.BufferGeometry()
 
 
 			const textureLoader = new THREE.TextureLoader();
 			// const testImg01 = textureLoader.load('./assets/img/Purple_Tech01.jpeg')
-			const testImg01 = textureLoader.load('./assets/img/Glitter_Pixels.jpeg')
+			const testImg01 = textureLoader.load('./assets/img/backgrounds/Glitter_Pixels.jpeg')
 
-			const testImg02 = textureLoader.load('./assets/img/01_Purple_Galaxy.jpeg')
+			const testImg02 = textureLoader.load('./assets/img/backgrounds/01_Purple_Galaxy.jpeg')
 
 			const clockPNG = textureLoader.load('./assets/img/clocks/Clock03_A1.png')
 
 			const gear01_png = textureLoader.load('./assets/img/gears/GoldenGear01_A1.png')
+
+
+			// const neoncircle01 = textureLoader.load('./assets/img/gears/neoncircle.png')
+
+			// Test ui_Folder_01
+			const neoncircle01 = textureLoader.load('./assets/img/backgrounds/grid_01.jpg')
 			
 
 		
@@ -190,6 +197,16 @@
 				mesh3.position.set(0, 2000, 0)
 				scene.add(mesh3)
 
+				const geometry_neon01 = new THREE.BoxGeometry(1000, 1000, 1000, 32, 32, 32)
+				const mat_neoncircle = new THREE.MeshBasicMaterial({ map: neoncircle01, side: THREE.DoubleSide });
+				const mesh_neoncircle = new THREE.Mesh(geometry_neon01, mat_neoncircle);
+				mat_neoncircle.transparent = true;
+				mat_neoncircle.alphaMap = neoncircle01;
+				mesh_neoncircle.position.set(0, 10, 0);
+				scene.add(mesh_neoncircle);
+				3.7 
+
+
 				const geometry04_HyperDataCardTest = new THREE.PlaneGeometry(400, 400);
 				const mat_clock = new THREE.MeshBasicMaterial(
     			{
@@ -221,7 +238,7 @@
 				scene.add(goldenGearTest);
 
 				const geometry05_NeonCircle = new THREE.PlaneGeometry(500, 500);
-				const mat_Neon01 = new THREE.MeshBasicMaterial(
+				const mat_goldengear02 = new THREE.MeshBasicMaterial(
     			{
         		map: gear01_png,
         		side: THREE.DoubleSide
@@ -229,9 +246,9 @@
 				);
 				goldenGearTest2 = new THREE.Mesh(
     		geometry05_NeonCircle,
-    	 	mat_Neon01,
+				mat_goldengear02,
 				);
-				mat_goldengear01.transparent = true;
+				mat_goldengear02.transparent = true;
 				goldenGearTest2.position.set(0, 55, -2);
 				scene.add(goldenGearTest2);
 

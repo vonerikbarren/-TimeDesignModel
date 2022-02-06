@@ -20,6 +20,18 @@ Next Steps:
      },
    }
 
+   resources: {
+     link01: {
+       HeaderData: {
+         TimeFound: @00:31
+         Date: <LocationInTime>{ 2/05/22 @ "HomeOffice" }<LocationInTime>
+       }
+       Header: "A website to download 3d models for free",
+       Link: 'https://sketchfab.com/3d-models/quantum-cube-02971982b92347d4b6ddbe1c0d6487c5',
+       note: ["Some pretty nice stuff there. "]
+     }
+   }
+
    WhenUserPressesPlay = () => {
      Realities will show from inner most to outer most.
 

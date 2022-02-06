@@ -1,0 +1,29 @@
+/
+* |- # header
+* |
+/
+
+# PlaneGeometry with img
+
+
+# SphereGeometry with img
+const geo_name_id = new THREE.SphereGeometry( 5000, 32, 32)
+const mat_name_id = new THREE.MeshBasicMaterial({ map: testImg02, side: THREE.DoubleSide });
+mesh_name_id = new THREE.Mesh(geo_name_id, mat_name_id)
+mat_name_id.transparent = false;
+mat_name_id.alphaMap = testImg02
+mat_name_id.wireframe = false;
+scene.add(mesh_name_id)
+
+# BoxGeomtry with img
+
+const geo_name_id = new THREE.BoxGeometry(500, 500, 500, 32, 32, 32)
+const mat_name_id = new THREE.MeshBasicMaterial({ map: testImg01, side: THREE.DoubleSide });
+mesh_name_id = new THREE.Mesh(geo_name_id, mat_name_id)
+mat_name_id.transparent = true;
+mat_name_id.alphaMap = testImg01
+mat_name_id.wireframe = false;
+mesh_name_id.position.set(0, 2000, 0)
+scene.add(mesh_name_id)
+
+# CylynderGeometry with img
