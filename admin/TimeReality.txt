@@ -1,0 +1,52 @@
+# Time Reality
+
+## Component Tree
+- TimeSphere
+  - Outside
+    - Front Clock
+  - Inside
+    - Time Reality
+      - Center Axis
+      - LoopsOfTime (Circles, Orbits, etc.)
+        - SecondLoop
+        - MinuteLoop
+        - HourLoop
+        - DayLoop
+        - WeekLoop
+        - MonthLoop
+        - YearLoop
+        - DecadeLoop
+        - CenturyLoop
+      - Sun, Moon, and Stars
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

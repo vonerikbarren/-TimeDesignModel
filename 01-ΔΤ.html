@@ -37,7 +37,7 @@
 			let controls, water, sun, mesh, ΔΦ, ΔΩ;
 			let Φ, MeshHDC_01, meshA1, goldenGearTest, goldenGearTest2 ;
 			let neoncircle;
-			let timeSphere, mesh_timeSphere_L0;
+			let timeSphere, mesh_timeSphere_L0, mesh_Reality_A0, mesh_lightContainer_A0;
 
 			const particlesGeometryA = new THREE.BufferGeometry()
 
@@ -59,7 +59,9 @@
 			const neoncircle01 = textureLoader.load('./assets/img/backgrounds/InfiniteContainer.jpg')
 			
 			// TimeSphereImgs
-			const timeSphereImg_01 = textureLoader.load('./assets/img/backgrounds/galaxy_light_no_light.jpg')
+			const timeSphereImg_01 = textureLoader.load('./assets/img/backgrounds/hexagon02.jpg')
+
+      const realitySphereImg_01 = textureLoader.load('./assets/img/backgrounds/greyWhiteGradient_02.jpeg')
 		
 
 			init();
@@ -82,7 +84,7 @@
 
 				scene = new THREE.Scene();
 
-				camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 200000 );
 				camera.position.set( 30, 100, 100 );
 				camera.view = sun;
 
@@ -92,7 +94,7 @@
 
 				// Water
 
-				const waterGeometry = new THREE.PlaneGeometry( 50000, 50000 );
+				const waterGeometry = new THREE.PlaneGeometry( 500000, 500000 );
 
 				water = new Water(
 					waterGeometry,
@@ -176,6 +178,8 @@
 				ΔΩ.rotation.z = 3.14
 				scene.add ( ΔΩ );
 
+
+
 				const ΔΦ02_Α1 = new THREE.IcosahedronGeometry(7, 2);
 				Φ = new THREE.Mesh(ΔΦ02_Α1, ΔΦ01_1Α2);
 				Φ.position.y = 57.423
@@ -187,6 +191,7 @@
 				material2.transparent = false;
 				material2.alphaMap = testImg02
 				material2.wireframe = false;
+        meshA1.position.set(0, 120000, 0)
 				scene.add(meshA1)
 
 
@@ -204,7 +209,7 @@
 				const mesh_neoncircle = new THREE.Mesh(geometry_neon01, mat_neoncircle);
 				mat_neoncircle.transparent = false;
 				mat_neoncircle.alphaMap = neoncircle01;
-				mesh_neoncircle.position.set(0, 10, 0);
+				mesh_neoncircle.position.set(0, 90000, 0);
 				scene.add(mesh_neoncircle);
 				3.7 
 
@@ -247,22 +252,51 @@
 				scene.add(goldenGearTest2);
 
 
+
+
+
 				// Groups	
 				const group01_timeSphere = new THREE.Group();
 				group01_timeSphere.position.set(500, 0, 0);
 				scene.add(group01_timeSphere);
 
+        const group02_RealityContainer = new THREE.Group();
+        group02_RealityContainer.position.set(0, 0, 0);
+        scene.add(group02_RealityContainer)
+
 				// TimeSphere_Layer01_Skeleton
-				const geo_timeSphere_L0 = new THREE.SphereGeometry( 5000, 32, 32)
+				const geo_timeSphere_L0 = new THREE.SphereGeometry( 4500, 32, 32)
 				const mat_timeSphere_L0 = new THREE.MeshBasicMaterial({ map: timeSphereImg_01, side: THREE.DoubleSide });
 				mesh_timeSphere_L0 = new THREE.Mesh(geo_timeSphere_L0, mat_timeSphere_L0)
-				mat_timeSphere_L0.transparent = false;
+				mat_timeSphere_L0.transparent =false;
 				mat_timeSphere_L0.alphaMap = timeSphereImg_01
 				mat_timeSphere_L0.wireframe = false;
-				mesh_timeSphere_L0.position.set(10000, 2000, 0)
+				mesh_timeSphere_L0.position.set(0, 0, 200)
 				group01_timeSphere.add(mesh_timeSphere_L0);
 
+        const geo_Reality_A0 = new THREE.ConeGeometry(90000, 150000, 4)
+        const mat_Reality_A0 = new THREE.MeshBasicMaterial({ 
+          color: 0xffffff, 
+          map: realitySphereImg_01, 
+          side: THREE.DoubleSide 
+        });
+        mesh_Reality_A0 = new THREE.Mesh(geo_Reality_A0, mat_Reality_A0)
+        mat_Reality_A0.transparent = false;
+        mat_Reality_A0.alphaMap = realitySphereImg_01
+        mat_Reality_A0.wireframe = false;
+        mesh_Reality_A0.position.set(0, 74550, 0)
+        group02_RealityContainer.add(mesh_Reality_A0)
 
+        const geo_lightContainer_A0 = new THREE.CylinderGeometry(50, 50, 200000, 32);
+        const mat_lightContainer_A0 = new THREE.MeshBasicMaterial({color: 0xffffff, side: THREE.DoubleSide});
+        mesh_lightContainer_A0 = new THREE.Mesh(geo_lightContainer_A0, mat_lightContainer_A0);
+        mat_lightContainer_A0.transparent = true;
+        mesh_lightContainer_A0.position.set(0, 100000, 0);
+        group02_RealityContainer.add(mesh_lightContainer_A0);
+
+
+
+        // -------------------------------------------------------------
 				// const ambientLight = new THREE.AmbientLight(0xffffff, 0.3)
 				// scene.add(ambientLight)
 
@@ -282,17 +316,9 @@
 				directionalLight.position.set(2, 2, - 1)
 				scene.add(directionalLight)
 
-				// var geometry2 = new THREE.BoxGeometry( 100, 100, 20 );
-				// geometry2.applyMatrix( new THREE.Matrix4().makeRotationZ( Math.PI / 4 ) );
-				// geometry2.applyMatrix( new THREE.Matrix4().makeScale( 1, 2, 1 ) );
-				// const mesh2 = new THREE.Mesh( geometry2, material );
-				// mesh.scale.set( 1,1, 1 );
-				// scene.add( mesh2 );
-
-				//
 
 				controls = new OrbitControls( camera, renderer.domElement );
-				// controls.maxPolarAngle = Math.PI * 0.495;
+				controls.maxPolarAngle = Math.PI * 0.495;
 				// controls.target.set( 0, 55, 0 );
 				// controls.minDistance = 40.0;
 				// controls.maxDistance = 200.0;
@@ -331,9 +357,9 @@
 				folderTransformations.add(ΔΩ.rotation, 'z').min(-3.14).max(3.14).step(0.001).name('z-rotation');
 				
 				const folderCamera = gui.addFolder('Camera');
-				folderCamera.add(camera.position, 'x').min(-500).max(500).step(0.001).name('x-camera')
-				folderCamera.add(camera.position, 'y').min(-500).max(500).step(0.001).name('y-camera')
-				folderCamera.add(camera.position, 'z').min(-500).max(500).step(0.001).name('z-camera')
+				folderCamera.add(camera.position, 'x').min(-50000).max(50000).step(0.001).name('x-camera')
+				folderCamera.add(camera.position, 'y').min(-50000).max(50000).step(0.001).name('y-camera')
+				folderCamera.add(camera.position, 'z').min(-50000).max(50000).step(0.001).name('z-camera')
 
 
 
@@ -365,35 +391,42 @@
 
 			
 				
-				mesh.position.z = Math.PI / 3 ;
-				mesh.rotation.z = Math.PI / 4 ;
-        mesh.position.y = 35;
-				mesh.position.x = 300;
+				// mesh.position.z = Math.PI / 3 ;
+				// mesh.rotation.z = Math.PI / 4 ;
+        // mesh.position.y = 35;
+				// mesh.position.x = 300;
         // mesh.scale.x = 0.5;
 
 				// mesh.position.y = Math.sin( time ) * 20 + 5;
-				mesh.position.y = 30
+
+				// mesh.position.y = 30
+
 				// mesh.rotation.z = 260
 				// mesh.rotation.y = 80
 				// mesh.rotation.x = time * 0.00001;
 				// mesh.rotation.y = time * 1;
 				// mesh.rotation.z = time * 0;
 
-				mesh.rotation.y = time * 0.1;
+				// mesh.rotation.y = time * 0.1;
 				// mesh2.rotation.y = time * 0.1;
 
 				// camera.rotation.x = time * 0.1;
-				mesh.position.x = Math.cos(time * 2) * 212.5
-				mesh.position.z = Math.sin(time * 2) * 212.5
+				// mesh.position.x = Math.cos(time * 2) * 212.5
+				// mesh.position.z = Math.sin(time * 2) * 212.5
 				// mesh.position.y = Math.sin(time * 2) * 112.5
 
-				ΔΦ.rotation.y = time * 15;
-				ΔΩ.rotation.y = time * 15;
-				// meshA1.rotation.y = time * 15;
+				// ΔΦ.rotation.y = time * 15;
+				// ΔΩ.rotation.y = time * 15;
+				// // meshA1.rotation.y = time * 15;
 				meshA1.rotation.x = time * 15
-				MeshHDC_01.rotation.z = time * -0.5;
-				goldenGearTest.rotation.z = time * 0.5;
-				goldenGearTest2.rotation.z = time * 0.5;
+				// MeshHDC_01.rotation.z = time * -0.5;
+				// goldenGearTest.rotation.z = time * 0.5;
+				// goldenGearTest2.rotation.z = time * 0.5;
+
+        mesh_timeSphere_L0.rotation.z = time * 15;
+        mesh_timeSphere_L0.position.x = Math.cos(time * 2) * 2012.5
+				mesh_timeSphere_L0.position.z = Math.sin(time * 0.5) * 2012.5
+        mesh_timeSphere_L0.position.y = Math.sin(time * 0.1) * 10012.5
 
 				water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
 

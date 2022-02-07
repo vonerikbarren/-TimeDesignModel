@@ -3,7 +3,62 @@
 * |
 /
 
+# Directions
+Geometries: 
+  1. identify geo_name_id, mat_name_id, and mesh_name_id
+    - every geometry has to have a geometry, a material, and a mesh (combo of both)
+    - Get familiar with all geometries. 
+  2. copy code, and be mindful there are repeats so use multiple grab cmd + d = duplicates
+
+
+# Geometry Object Type
+- Single Object = Only 1 Geomtry
+- Group Object = 2+ Geometries
+
+
+
+# Geometries List
+  01. Box 
+  02. Circle,
+  03. Cone,
+  04. Cylnder,
+  05. Dodecahedron,
+  06. Edges,
+  07. Extrude,
+  08. Icosahedron,
+  09. Lathe,
+  10. Octahedron,
+  11. Plane,
+  12. Polyhedron,
+  13. Ring,
+  14. Shape,
+  15. Sphere,
+  16. Tetrahedron, 
+  17. Torus,
+  18. TrousKnot,
+  19. Tube,
+  20. Wireframe,
+
 # PlaneGeometry with img
+
+const geo_name_id = new THREE.PlaneGeometry( 400, 400);
+const mat_name_id = new THREE.MeshBasicMaterial({map: clockPNG, side: THREE.DoubleSide});
+mesh_name_id = new THREE.Mesh(geo_name_id, mat_name_id);
+mat_name_id.transparent = true;
+mesh_name_id.position.set(0, 55, 0);
+scene.add(mesh_name_id);
+
+
+# ConeGeometry w/o image 
+## ConeGeometry(radius, height, radialSegments, heightSegments, openEnded, thetaStart, thetaLength)
+const geo_name_id = new THREE.ConeGeometry(50, 50, 30)
+const mat_name_id = new THREE.MeshBasicMaterial({ map: testImg02, side: THREE.DoubleSide });
+mesh_name_id = new THREE.Mesh(geo_name_id, mat_name_id)
+mat_name_id.transparent = false;
+mat_name_id.alphaMap = testImg02
+mat_name_id.wireframe = false;
+mesh_name_id.position.set(0, 2000, 0)
+scene.add(mesh_name_id)
 
 
 # SphereGeometry with img
@@ -13,6 +68,7 @@ mesh_name_id = new THREE.Mesh(geo_name_id, mat_name_id)
 mat_name_id.transparent = false;
 mat_name_id.alphaMap = testImg02
 mat_name_id.wireframe = false;
+mesh_name_id.position.set(0, 2000, 0)
 scene.add(mesh_name_id)
 
 # BoxGeomtry with img
