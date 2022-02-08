@@ -49,6 +49,16 @@ mesh_name_id.position.set(0, 55, 0);
 scene.add(mesh_name_id);
 
 
+# CylinderGeometry with Img
+
+const geo_name_id = new THREE.CylinderGeometry(5, 5, 32 32);
+const mat_name_id = new THREE.MeshBasicMaterial({map: clockPNG, side: THREE.DoubleSide});
+mesh_name_id = new THREE.Mesh(geo_name_id, mat_name_id);
+mat_name_id.transparent = true;
+mesh_name_id.position.set(0, 55, 0);
+scene.add(mesh_name_id);
+
+
 # ConeGeometry w/o image 
 ## ConeGeometry(radius, height, radialSegments, heightSegments, openEnded, thetaStart, thetaLength)
 const geo_name_id = new THREE.ConeGeometry(50, 50, 30)
