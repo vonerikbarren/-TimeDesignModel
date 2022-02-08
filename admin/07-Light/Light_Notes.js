@@ -17,12 +17,16 @@ const Light_Notes.js = {
           Helper04: 'RectAreaLightHelper',
           Helper05: 'SpotLightHelper',
         },
-      }
+      },
     ],
   }, 
 
   ToC: {
-
+    Light: {
+      item01: 'ClassType',
+      item02: 'TypeList = {}',
+      item03: 'PerformanceNotes = []',
+    }
   },
 
   GeneralNotes: {
