@@ -1,4 +1,4 @@
-const Light_Notes.js = {
+const Light_Notes = {
   Admin: {
     Log: [],
     Resources: [
@@ -26,7 +26,7 @@ const Light_Notes.js = {
       item01: 'ClassType',
       item02: 'TypeList = {}',
       item03: 'PerformanceNotes = []',
-    }
+    },
   },
 
   GeneralNotes: {
@@ -105,3 +105,5 @@ const Light_Notes.js = {
     }
   },
 }
+
+module.exports = Light_Notes
