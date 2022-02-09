@@ -1,3 +1,78 @@
+const ViewingTheScene_Shortcuts = {
+  DifferentMovements: {
+    Movement00: {
+      MovementName: "",
+      Shortcut: "",
+      Notes: [],
+    },
+
+    Movement01: {
+      MovementName: "Orbit",
+      Shortcut: "MOUSEWHEEL - Pressed Down",
+      Notes: [
+        {
+          Function: 'To move view around a single target',
+        },
+      ],
+    },
+
+    Movement02: {
+      MovementName: ["Truck", "Track", "Pan (incorrect)"],
+      Shortcut: "Shift + MOUSEWHEEL Button + Mouse-Movement-Left or Right",
+      Notes: [
+        {
+          Function: 'To move view right or left',
+        },
+      ],
+    },
+
+    Movement03: {
+      MovementName: "Pedestal",
+      Shortcut: "Shift + MOUSEWHEL Button + Mouse-Movement-Up or Down",
+      Notes: [
+        {
+          Function: 'To move view upwards or downwards',
+        },
+      ],
+    },
+
+    Movement04: {
+      MovementName: "Dolly",
+      Shortcut: "MOUSEWHEEL (Roll) ",
+      Notes: [
+        {
+          Function: 'To zoom / scale in or out.',
+        },
+      ],
+    },
+
+
+    Movement05: {
+      MovementName: "Super Dolly / Resolve Zoom Limit Movement",
+      Shortcut: "Shift + Ctrl + MIDDLEMOUSE",
+      Notes: [
+        {
+          Function: 'To zoom scale in or out and even beyond 0',
+        },
+      ],
+    },
+
+
+    Movement06: {
+      MovementName: "Fly / Walk Mode",
+      Shortcut: "Shift + BackTick",
+      Notes: [
+        {
+          Function: 'Tilting and Panning (Human Head Functions)',
+        }
+      ],
+    },
+
+
+  }
+}
+
+
 const Blender_KeyboardShortcuts = {
   Numpad: {
 
@@ -109,7 +184,7 @@ const Blender_KeyboardShortcuts = {
   
     ],
 
-    // Template
+    // Edit Mode
     ShortcutID: 'MODE_01',
     ShorcutName: "MODE_EDIT",
     UserInput: "TAB",
@@ -117,13 +192,17 @@ const Blender_KeyboardShortcuts = {
     AdditionalInputs: {
       Input01: ["1", "Vertices Highlight"],
       Input02: ["2", "Edges Highlight"],
-      Input03: ["3", ]
+      Input03: ["3", "Faces Highlight"],
     }
     Notes: [],
 
 
-
-
+    // Shading
+    ShortcutID: 'MODE_01',
+    ShorcutName: "MODE_SHADE",
+    UserInput: "Z",
+    Function: 'Opens up Shade Mode Menu',
+    Notes: [],
   },
 
 
@@ -190,6 +269,50 @@ const Blender_KeyboardShortcuts = {
     UserInput: "S",
     Function: 'Makes user able to scale object',
     Notes: [],
+
+  },
+
+  Properties : {
+    GrayProperties : [
+      "Deal with the renderers and the environment",
+    ]
+
+    ColoredProperties: [
+      "These relate to the active object, and they can differ depending on the type of active object because we don't have the same properties for a cube as for a light."
+    ],
+
+    ColoredProperties_Overview: [
+      {
+        Name: ["Object Properties"]
+        Appearance: "Orange Box"
+        Purpose: 'Lets the user change with accuracy properties such as transformations',
+      },
+
+      {
+        Name: ["Modifier Properties"]
+        Appearance: "Blue Wrench",
+        Purpose: 'Lets you add what we call modifiers. These are non-descructive modifications, You can subdivide, bend, grow, shrink, etc. and turn them off as you please',
+      },
+
+      {
+        Name: ["Material Properties"],
+        Appearance: "Red Sphere - HazardIcon",
+        Purpose: 'Lets the user play with materials',
+        MoreInfo: [
+          'By default you have access to one material named `Material and it should be applied to the default cube if you didnt delete it.`',
+
+          'You can remove the material with the `-` button and combine them with the `+` button, but we usually use only one material per mesh.',
+
+          'If there is no material on the mesh, we can choose an existing one, or we can create a new one with the `New` button',
+
+          'We can have different types of sufaces for one material. The default one is called `Principled BSDF` adn this type of surface uses the PBR principles as the MeshStandardMaterial does in THREE.js. This means that we should get a very similar result if we export htis kind of material to a THREE.js Scene.',
+        ],
+      },
+    ],
+  },
+
+
+  OtherShortcuts : {
 
   },
 
