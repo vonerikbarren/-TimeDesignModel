@@ -76,7 +76,58 @@ const Blender_KeyboardShortcuts = {
   },
 
 
-  Object_Shortcuts: {
+  ModeChange: {
+
+
+    ID_Class: 'MODE = Mode',
+
+    // Template
+    ShortcutID: 'CRSI00',
+    ShorcutName: "CRSI_",
+    UserInput: "",
+    Function: '',
+    Notes: [],
+
+    // Mode Menu
+    ShortcutID: 'MODE_00',
+    ShorcutName: "MODE_MENU",
+    UserInput: "Ctrl + Tab",
+    Function: 'Shows the Mode Menu',
+    Notes: [
+
+      // To change which mode I am in. 
+      {
+        ModeTypes: {
+          Mode04: 'ObjectMode',
+          Mode02: 'Sculpt Mode',
+          Mode06: 'Edit Mode',
+          Mode07: 'WeightPaint',
+          Mode08: 'Vertex Paint',
+          Mode09: 'TexturePaint',
+        },
+      }
+  
+    ],
+
+    // Template
+    ShortcutID: 'MODE_01',
+    ShorcutName: "MODE_EDIT",
+    UserInput: "TAB",
+    Function: 'Puts user into edit mode',
+    AdditionalInputs: {
+      Input01: ["1", "Vertices Highlight"],
+      Input02: ["2", "Edges Highlight"],
+      Input03: ["3", ]
+    }
+    Notes: [],
+
+
+
+
+  },
+
+
+  ObjectMode_Shortcuts: {
     ID_Class: 'CRSI = CreationSimulation',
 
     // Template
@@ -141,6 +192,8 @@ const Blender_KeyboardShortcuts = {
     Notes: [],
 
   },
+
+
 
 
 }
