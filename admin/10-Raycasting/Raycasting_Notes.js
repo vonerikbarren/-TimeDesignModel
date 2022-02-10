@@ -128,7 +128,53 @@ const Raycasting_Notes = {
         Notes: [
           'Unluckily, they all go blue but never go back red. There are many ways to turn the objects that didnt intersect back to red. What we can do is turn all the spheres red and then turn the ones that intersect blue.',
         ],
-      }
+      },
+
+
+      Header_C1: {
+        Title: "Mouse Events - Hovering",
+
+        Notes: [
+          'The first thing that is needed is the coordinates of the mouse.We cannot use the basic native JavaScript coordinates, which are in pixels. We need a value that goes from -1 to 1 in both the horizontal and vertical axis, with the vertical coordinate being positive when moving the mouse upward.',
+
+          '\n',
+
+          'This is how WebGL works and its related to things like clip space but we dont need to understand those complex concepts.',
+
+          '\n',
+
+          'Examples:',
+
+          {
+            mouseTopLeft: [-1, 1],
+            mouseBottomLeft: [-1/ -1],
+            mouseMiddleVerticallyAndRightHorizontally: [1, 0],
+            mouseCenter: [0, 0],
+          },
+
+          ["Make sure that the values match from previous examples"],
+          '\n',
+
+          '*** To orient the ray in the right direction, we can use the `setFromCamera()` method on the Raycaster. The rest of the code is the same as before. We just update the objects materials to red or blue if they intersect or not.',
+        ],
+      },
+
+
+      Header_C2: {
+        Title: "Mouse Events - MouseEnter and MouseLeave Events",
+
+        Notes: [
+          'Mouse Events like `mouseEnter` and `mouseLeave` etc. Arent supported either. if you want to be inform when the mouse enters an object or leaves that object, youll have to do it by yourself.',
+
+          '\n',
+
+          'If ther is one object intersecting, but there wasnt one before, it means a `mouseEnter` event has happened on that object.',
+
+          'If no object intersects, but there was one before, it means a `mouseLeave` event has happened',
+
+          'We just ned to save the currently intersecting object: let currentIntersect = null.'
+        ],
+      },
     },
   }
 }

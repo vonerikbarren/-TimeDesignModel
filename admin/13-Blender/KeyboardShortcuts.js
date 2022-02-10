@@ -314,6 +314,22 @@ const Blender_KeyboardShortcuts = {
 
   OtherShortcuts : {
 
+    ID_Class: 'OTHR = Other',
+    
+    // Tempalte
+    ShortcutID: 'OTHR_00',
+    ShorcutName: "OTHR_",
+    UserInput: "",
+    Function: '',
+    Notes: [],
+
+    Shortcut01: {
+      ShortcutID: 'OTHR_01',
+      ShorcutName: "OTHR_Search",
+      UserInput: "F3",
+      Function: 'Opens the in Blender Search if I need to know a shortcut etc.',
+      Notes: [],
+    },
   },
 
 
