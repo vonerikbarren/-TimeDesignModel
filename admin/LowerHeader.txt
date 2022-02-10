@@ -4,6 +4,10 @@ Next Steps:
 -> animate groups for rotating  circularly and squarly  (if that makes any sense.)
 -> Think about other reality shapes alsoo.
 
+UseFul Shortcuts:
+
+Highlight then forward `[` = creates brackets around the text.
+
 
 ΔH_01 = {
  Goal: User Mode, and Demonstration Mode
