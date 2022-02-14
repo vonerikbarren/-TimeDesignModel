@@ -1,29 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>ΔΦΝ=Η</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link type="text/css" rel="stylesheet" href="./assets/css/main.css">
-	</head>
-	<body>
-
-		<div id="container"></div>
-		<div id="info">
-			<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> - webgl ocean
-
-			<div class="pressStart">Press Start</div>
-		</div>
-
-		<div class="virtualkeyboard-container-L0">
-
-		</div>
-
-<script src="./THREE_Scene.js"></script>
-
-		<script type="module">
-
-			import * as THREE from './libraries/modules/three.module.js';
+import * as THREE from './libraries/modules/three.module.js';
 
 			import Stats from './libraries/modules/stats.module.js';
 
@@ -483,8 +458,4 @@
 
 				renderer.render( scene, camera );
 
-			}
-
-		</script>
-	</body>
-</html>
+	}

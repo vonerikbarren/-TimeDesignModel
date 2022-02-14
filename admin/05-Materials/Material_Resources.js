@@ -40,5 +40,15 @@ const Material_Resources = {
       WebsiteTags: ['free game assets', 'no strings attached'],
       WebsiteInformation: [],
     },
+
+    {
+      WebsiteName: "gITF-Sample-Models",
+      WebsiteURL: 'https://github.com/KhronosGroup/glTF-Sample-Models',
+      WebsiteType: 'Github Repo',
+      WebsiteTags: [],
+      WebsiteInformation: [],
+    },
+
+
   ],
 }
