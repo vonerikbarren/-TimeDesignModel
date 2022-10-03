@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Time Reality</title>
+	<title>TimeΔ</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link type="text/css" rel="stylesheet" href="./assets/css/main.css">
@@ -12,9 +12,9 @@
 
 	<div id="container"></div>
 	<div id="info">
-		<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> - webgl ocean
+		<a href="" target="_blank" rel="noopener">Von'Erik Barren-Tucker</a> - Δ of Time Prototype
 
-		<div class="pressStart">Press Start</div>
+		<div class="pressStart">Dimensions of Time</div>
 	</div>
 
 	<div class="virtualkeyboard-container-L0">
@@ -45,6 +45,7 @@
 		let neoncircle;
 		let timeSphere, mesh_timeSphere_L0, mesh_Reality_A0, mesh_timeSphere_L1, mesh_lightContainer_A0;
 		let mesh_timeSphere_L2, mesh_timeSphere_L3, mesh_TimeSphereHourBase_L0
+		let animatedTime, mesh_timeSphere_L4
 
 		
 
@@ -68,7 +69,7 @@
 		// const testImg01 = textureLoader.load('./assets/img/Purple_Tech01.jpeg')
 
 		// |- Glitter_Pixels.jpeg
-		const testImg01 = textureLoader.load('./assets/img/backgrounds/Glitter_Pixels.jpeg')
+		const testImg01 = textureLoader.load('./assets/img/backgrounds/grid_01.jpg')
 
 		const testImg02 = textureLoader.load('./assets/img/backgrounds/01_Purple_Galaxy.jpeg')
 
@@ -85,9 +86,13 @@
 		// TimeSphereImgs
 		const timeSphereImg_01 = textureLoader.load('./assets/img/backgrounds/TimeTravel.png')
 
-		const realitySphereImg_01 = textureLoader.load('./assets/img/backgrounds/Grid03.png')
+		const realitySphereImg_01 = textureLoader.load('./assets/img/backgrounds/TimeTravel.png')
 
 		const realitySphereImg_02 = textureLoader.load('./assets/img/backgrounds/marbleWhite.jpg')
+
+		const realitySphereImg_03 = textureLoader.load('./assets/img/backgrounds/space2.jpeg')
+
+		const realitySphereImg_04 = textureLoader.load('./assets/img/backgrounds/space3.jpeg')
 
 
 		init();
@@ -110,8 +115,9 @@
 
 			scene = new THREE.Scene();
 
-			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 200000);
-			camera.position.set(30, 100, 100);
+			// Search.Camera
+			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 500000);
+			camera.position.set(30, 6000, 22000);
 			camera.view = sun;
 
 			//
@@ -147,7 +153,7 @@
 			// Skybox
 
 			const sky = new Sky();
-			sky.scale.setScalar(50000);
+			sky.scale.setScalar(100000);
 			scene.add(sky);
 
 			const skyUniforms = sky.material.uniforms;
@@ -283,7 +289,7 @@
 
 			// Groups	
 			const group01_timeSphere = new THREE.Group();
-			group01_timeSphere.position.set(500, 50000, 0);
+			group01_timeSphere.position.set(500, 5000, 0);
 			scene.add(group01_timeSphere);
 
 			const group02_RealityContainer = new THREE.Group();
@@ -344,38 +350,73 @@
 			group01_timeSphere.add(mesh_TimeSphereHourBase_L0);
 
 
-			const geo_TimeSphereHourBase_L0 = new THREE.CircleGeometry(5000, 50)
-			const mat_TimeSphereHourBase_L0 = new THREE.MeshBasicMaterial({ map: timeSphereImg_01, side: THREE.DoubleSide });
-			mesh_TimeSphereHourBase_L0 = new THREE.Mesh(geo_TimeSphereHourBase_L0, mat_TimeSphereHourBase_L0)
-			mat_TimeSphereHourBase_L0.transparent = true;
-			mat_TimeSphereHourBase_L0.alphaMap = timeSphereImg_01
-			mat_TimeSphereHourBase_L0.wireframe = false;
-			mesh_TimeSphereHourBase_L0.position.set(0, 1.5, 200)
-			mesh_TimeSphereHourBase_L0.rotation.x = - Math.PI * 0.5
-			group01_timeSphere.add(mesh_TimeSphereHourBase_L0);
+			animatedTime = new THREE.Group()
+			animatedTime.position.set(0, 0, 0)
+			animatedTime.scale.set(1000, 1000, 1000)
+			group01_timeSphere.add(animatedTime)
+
+			const geo_timeSphere_L4 = new THREE.SphereGeometry(305500, 32, 32)
+			const mat_timeSphere_L4 = new THREE.MeshBasicMaterial({ map: realitySphereImg_03, side: THREE.DoubleSide });
+			mesh_timeSphere_L4 = new THREE.Mesh(geo_timeSphere_L4, mat_timeSphere_L4)
+			mat_timeSphere_L4.transparent = true;
+			mat_timeSphere_L4.alphaMap = realitySphereImg_03
+			mat_timeSphere_L4.wireframe = false;
+			mesh_timeSphere_L4.position.set(0, 0, 200)
+			group01_timeSphere.add(mesh_timeSphere_L4);
 
 
 
 
 
-			const geo_Reality_A0 = new THREE.ConeGeometry(90000, 150000, 4)
-			const mat_Reality_A0 = new THREE.MeshBasicMaterial({
-				color: 0xffffff,
-				map: realitySphereImg_01,
-				side: THREE.DoubleSide
-			});
-			mesh_Reality_A0 = new THREE.Mesh(geo_Reality_A0, mat_Reality_A0)
-			mat_Reality_A0.transparent = false;
-			mat_Reality_A0.alphaMap = realitySphereImg_01
-			mat_Reality_A0.wireframe = false;
-			mesh_Reality_A0.position.set(0, 74550, 0)
-			group02_RealityContainer.add(mesh_Reality_A0)
 
-			const geo_lightContainer_A0 = new THREE.CylinderGeometry(50, 50, 200000, 32);
+
+
+
+
+
+
+
+
+
+
+
+
+
+			// const geo_TimeSphereHourBase_L0 = new THREE.CircleGeometry(5000, 50)
+			// const mat_TimeSphereHourBase_L0 = new THREE.MeshBasicMaterial({ map: timeSphereImg_01, side: THREE.DoubleSide });
+			// mesh_TimeSphereHourBase_L0 = new THREE.Mesh(geo_TimeSphereHourBase_L0, mat_TimeSphereHourBase_L0)
+			// mat_TimeSphereHourBase_L0.transparent = true;
+			// mat_TimeSphereHourBase_L0.alphaMap = timeSphereImg_01
+			// mat_TimeSphereHourBase_L0.wireframe = false;
+			// mesh_TimeSphereHourBase_L0.position.set(0, 1.5, 200)
+			// mesh_TimeSphereHourBase_L0.rotation.x = - Math.PI * 0.5
+			// group01_timeSphere.add(mesh_TimeSphereHourBase_L0);
+
+
+
+
+
+			// const geo_Reality_A0 = new THREE.SphereGeometry(90000, 150000, 4)
+			// const mat_Reality_A0 = new THREE.MeshBasicMaterial({
+			// 	color: 0xffffff,
+			// 	map: realitySphereImg_01,
+			// 	side: THREE.DoubleSide
+			// });
+			// mesh_Reality_A0 = new THREE.Mesh(geo_Reality_A0, mat_Reality_A0)
+			// mat_Reality_A0.transparent = true;
+			// mat_Reality_A0.alphaMap = realitySphereImg_01
+			// mat_Reality_A0.wireframe = false;
+			// mesh_Reality_A0.position.set(0, 74550, 0)
+			// group02_RealityContainer.add(mesh_Reality_A0)
+
+
+
+
+			const geo_lightContainer_A0 = new THREE.CylinderGeometry(50, 50, 50, 32);
 			const mat_lightContainer_A0 = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
 			mesh_lightContainer_A0 = new THREE.Mesh(geo_lightContainer_A0, mat_lightContainer_A0);
 			mat_lightContainer_A0.transparent = true;
-			mesh_lightContainer_A0.position.set(0, 100000, 0);
+			mesh_lightContainer_A0.position.set(500000, 0, 0);
 			group02_RealityContainer.add(mesh_lightContainer_A0);
 
 
@@ -411,9 +452,9 @@
 
 			controls = new FirstPersonControls(camera, renderer.domElement);
 
-			controls.movementSpeed = 5000;
-			controls.lookSpeed = 0.09
-			controls.noFly = false;
+			controls.movementSpeed = 5;
+			controls.lookSpeed = 0.035
+			controls.noFly = true;
 			controls.lookVertical = true;
 			controls.mouseDragOn = true;
 			// controls.update();
@@ -440,20 +481,20 @@
 			folderWater.add(waterUniforms.size, 'value', 0.1, 10, 0.1).name('size');
 			folderWater.open();
 
-			const folderPositions = gui.addFolder('Positions')
-			folderPositions.add(Φ.position, 'x').min(-200).max(200).step(0.001).name('x-position');
-			folderPositions.add(Φ.position, 'y').min(-200).max(200).step(0.001).name('y-position');
-			folderPositions.add(Φ.position, 'z').min(-200).max(200).step(0.001).name('z-position');
+			// const folderPositions = gui.addFolder('Positions')
+			// folderPositions.add(Φ.position, 'x').min(-200).max(200).step(0.001).name('x-position');
+			// folderPositions.add(Φ.position, 'y').min(-200).max(200).step(0.001).name('y-position');
+			// folderPositions.add(Φ.position, 'z').min(-200).max(200).step(0.001).name('z-position');
 
-			const folderTransformations = gui.addFolder('Transformations');
-			folderTransformations.add(ΔΩ.rotation, 'x').min(-3.14).max(3.14).step(0.001).name('x-rotation');
-			folderTransformations.add(ΔΩ.rotation, 'y').min(-3.14).max(3.14).step(0.001).name('y-rotation');
-			folderTransformations.add(ΔΩ.rotation, 'z').min(-3.14).max(3.14).step(0.001).name('z-rotation');
+			// const folderTransformations = gui.addFolder('Transformations');
+			// folderTransformations.add(ΔΩ.rotation, 'x').min(-3.14).max(3.14).step(0.001).name('x-rotation');
+			// folderTransformations.add(ΔΩ.rotation, 'y').min(-3.14).max(3.14).step(0.001).name('y-rotation');
+			// folderTransformations.add(ΔΩ.rotation, 'z').min(-3.14).max(3.14).step(0.001).name('z-rotation');
 
 			const folderCamera = gui.addFolder('Camera');
-			folderCamera.add(camera.position, 'x').min(-50000).max(50000).step(0.001).name('x-camera')
-			folderCamera.add(camera.position, 'y').min(-50000).max(50000).step(0.001).name('y-camera')
-			folderCamera.add(camera.position, 'z').min(-50000).max(50000).step(0.001).name('z-camera')
+			folderCamera.add(camera.position, 'x').min(-5000).max(5000).step(0.001).name('x-camera')
+			folderCamera.add(camera.position, 'y').min(-5000).max(5000).step(0.001).name('y-camera')
+			folderCamera.add(camera.position, 'z').min(-5000).max(5000).step(0.001).name('z-camera')
 
 
 
@@ -484,6 +525,8 @@
 			const time = performance.now() * 0.001;
 			const delta = clock.getDelta();
 			controls.update(delta);
+
+			mesh_timeSphere_L4.position.x = time * 1;
 
 
 			// mesh.position.z = Math.PI / 3 ;
@@ -530,6 +573,7 @@
 			mesh_timeSphere_L2.rotation.x = time * 0.1;
 
 			mesh_timeSphere_L3.rotation.x = time * 0.1;
+			mesh_timeSphere_L4.rotation.x = time * 3.5;
 
 			mesh_TimeSphereHourBase_L0.rotation.z = time * 1
 
